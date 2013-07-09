@@ -1,12 +1,16 @@
-<h1>Listing users</h1>
+<div id="home-content-wrapper-bar">
 
-<table>
+<div id="separator"></div>
+<div id="home-content-header-thinest">
+<p class="intro-message"><strong>Listado de usuarios</strong></p>
+</div>
+
+<div id="home-content">
+
+<table class="battle-table" border="0" width="50%">
   <tr>
     <th>Username</th>
     <th>Email</th>
-    <th>Password hash</th>
-    <th>Password salt</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -15,15 +19,16 @@
   <tr>
     <td><%= user.username %></td>
     <td><%= user.email %></td>
-    <td><%= user.password_hash %></td>
-    <td><%= user.password_salt %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Modificar', edit_user_path(user) %></td>
+    <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: '¿Eliminar usuario?' } %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New User', new_user_path %>
+</div>
+<hr>  
+<div id="product_links"><%= link_to '< Ir a la tienda', products_path %></div>
+<div id="product_links">
+<%= link_to 'Crear nuevo usuario', new_user_path %> 
+</div>
+</div>

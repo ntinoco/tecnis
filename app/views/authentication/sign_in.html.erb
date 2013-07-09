@@ -1,14 +1,30 @@
-<p>Sign In</p>
+<div id="home-content-wrapper">
+
+<div id="home-content-header-thinest">
+<p class="intro-message"><strong>Acceso</strong></p>
+</div>
+
+<div id="home-content">
 <%= form_for @user, :as => :user, :url => sign_in_path(@user) do |f| %>
   <p>
-    <%= f.label 'username or email:' %><br />
+    <%= f.label 'Nombre de usuario o e-mail:' %><br />
     <%= f.text_field :username %>
   </p>
   <p>
-    <%= f.label 'password:' %><br />
+    <%= f.label 'Contraseña:' %><br />
     <%= f.password_field :password %>
   </p>
   <p>
-    <%= f.submit 'Sign In' %>&nbsp;&nbsp;&nbsp;
+    <%= f.submit 'Entrar' %>&nbsp;&nbsp;&nbsp;
   </p>
 <% end %>
+</div>
+<div id="product_links"><%= link_to '< Ir a la tienda', products_path %></div>
+<div id="product_links">
+  <%if current_user && current_user.admin?%>
+  Opciones:
+  <%= link_to 'Crear nuevo usuario', 'new_user' %> / 
+  <%= link_to 'Ver listado de usuarios', users_path %>
+  <%end%>
+</div>
+</div>

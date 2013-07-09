@@ -1,10 +1,12 @@
 Tecnisolar::Application.routes.draw do
   
 
+  #resources :product_categories
+  resources :categories
+
   #resources :users
   #get "home/index"
   root :to => "home#index"
-  resources :products
 
   get "sign_in" => "authentication#sign_in"
   post "sign_in" => "authentication#login"
@@ -18,6 +20,13 @@ Tecnisolar::Application.routes.draw do
   get "forgot_password" => "authentication#forgot_password"
   
   get "password_sent" => "authentication#password_sent"
+
+  match 'products/:id/add_to_cart' => 'products#add_to_cart', :as => :add_to_cart
+  match 'products/:id/remove_from_cart' => 'products#remove_from_cart', :as => :remove_from_cart
+  match 'products/clear_cart' => 'products#clear_cart', :as => :clear_cart
+
+  resources :products
+  resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

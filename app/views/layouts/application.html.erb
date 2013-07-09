@@ -1,18 +1,82 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Tecnisolar</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="es" xmlns="http://www.w3.org/1999/xhtml" lang="es"><head>
 
-<% flash.each do |name, msg| %>
-<%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
 
-<%= yield %>
+	<title>Tecnisolar - Energía Solar - Tienda</title>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+	
+	<meta name="keywords" content="tecnosolar,energia solar,fotovoltaica,aragón,calefacción,termosolar">
+	<meta name="description" content="Tecnisolar. Proyectos e instalaciones del Alto Aragón. Energía Solar.">
+	<meta name="author" content="Nacho Tinoco">
+	
+	<link rel="shortcut icon" href="http://ui.jquery.com/images/favicon.ico">
+	<link rel="icon" href="http://ui.jquery.com/images/favicon.ico" type="image/x-icon">
+	
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "jquery-1.js" %>
+    <%= csrf_meta_tags %>
+	</head>
+<body id="home">
+<!--[if IE 5]><div id="ie5" class="ie"><![endif]-->
+<!--[if IE 6]><div id="ie6" class="ie"><![endif]-->
+<!--[if IE 7]><div id="ie7" class="ie"><![endif]-->
 
-</body>
-</html>
+<div id="wrapper">
+	<div id="banner">
+		<h1 class="logo">
+			<a href="http://tecnisolar.es/" title="Tecnisolar - Energía Solar"><span>Tecnisolar - Energía Solar</span></a>
+		</h1>
+		<div id="navigation">
+			<div class="left"></div>
+			<ul>
+				<li>
+					<a href="http://ui.jquery.com/download">Qué ofrecemos</a>
+				</li>
+				<li>
+					<a href="proyectos.html">Proyectos</a>
+				</li>
+				<li>
+					<a href="contacto.html">Contacto</a>
+				</li>
+				<li>
+					<a href="http://ui.jquery.com/demos">Tienda</a>
+				</li>
+			</ul>
+			<div class="right"></div>
+		</div>
+	</div>
+	<div id="content-wrapper">
+		<div id="content">
+		<div class="content"><div class="content-body">
+
+       <% flash.each do |name, msg| %>
+         <%= content_tag :div, msg, :id => "flash_#{name}" %>
+       <% end %>
+
+     <%= yield %>
+
+     </div></div>
+	 </div>
+	</div>
+    <!-- xx -->
+	<div id="footer">
+		<div class="bg"></div>
+		<div class="inner">
+			<p>
+				<span class="first"></span><a class="block liferay" href="https://www.facebook.com/pages/Tecnisolar-Instalaciones-Energ%C3%ADa-Solar/132303906812145?fref=ts"><span>Facebook - Tecnisolar</span></a>
+				<a class="block filamentgroup" href="http://www.top50solar.nl/solar_es/in.php?id=1101"><span>TopSolar</span></a>
+				<span class="first" style="float: right; padding-right: 12px;">
+					<%if session[:user_id].nil?%>
+					  <%=link_to 'Acceder', 'sign_in'%>
+					<%else%>
+					  <%=link_to 'Salir', 'signed_out'%>
+					<%end%> - 
+					974 541 317 - 636 057 721 - info@tecnisolar.es
+				</span>
+			</p>
+		</div>
+	</div>
+</div>
+<!--[if lte IE 7]></div><![endif]-->
+</body></html>

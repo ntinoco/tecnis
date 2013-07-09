@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AuthenticationController < ApplicationController
 
   def sign_in
@@ -18,10 +20,11 @@ class AuthenticationController < ApplicationController
 
     if user
       session[:user_id] = user.id
-      flash[:notice] = 'Welcome.'
-      redirect_to :root
+      flash[:notice] = 'Bienvenido.'
+      redirect_to :products
+      #redirect_to :root
     else
-      flash.now[:error] = 'Unknown user. Please check your username and password.'
+      flash.now[:error] = 'Usuario desconocido. Verifica nombre de usuarios y contraseña.'
       render :action => "sign_in"
     end
 
@@ -29,7 +32,9 @@ class AuthenticationController < ApplicationController
 
   def signed_out
     session[:user_id] = nil
-    flash[:notice] = "You have been signed out."
+    #flash[:notice] = "You have been signed out."
+    flash[:notice] = "Se cerró la sesión."
+    redirect_to :root
   end
   
   def new_user
@@ -43,7 +48,7 @@ class AuthenticationController < ApplicationController
       @user.save
       UserMailer.welcome_email(@user).deliver
       session[:user_id] = @user.id
-      flash[:notice] = 'Welcome.'
+      flash[:notice] = 'Bienvenido.'
       redirect_to :root
     else
       render :action => "new_user"

@@ -1,7 +1,8 @@
-<%= form_for(@product) do |f| %>
+<%@product.categories.build%>
+<%= form_for @product do |f| %>
   <% if @product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+    <div id="flash_error">
+      <h2><%= pluralize(@product.errors.count, "error") %> no permite guardar este producto:</h2>
 
       <ul>
       <% @product.errors.full_messages.each do |msg| %>
@@ -12,26 +13,49 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+     Nombre:<br />
+     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :picture %><br />
-    <%= f.text_field :picture %>
+     Imagen:<br />
+     <%= image_tag(@product.image_path, :size => "150x150")%>
+    <%= f.file_field :image %>
   </div>
   <div class="field">
-    <%= f.label :reference %><br />
+    Referencia:<br />
     <%= f.text_field :reference %>
   </div>
   <div class="field">
-    <%= f.label :price %><br />
+    Precio (sin IVA):<br />
     <%= f.text_field :price %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    Texto descriptivo:<br />
     <%= f.text_area :description %>
   </div>
+
+  <div class="field">
+    ¿Disponible?:<br />
+    <%= f.check_box :available %>
+  </div>
+
+  <!-- Categories -->
+  <hr>
+  <div class="field">
+  Categorías:
+  <%= f.fields_for :product_categories, @product.initialized_categorizations do |builder| %>
+    <% category = builder.object.category %>
+    <%= builder.hidden_field :category_id %>
+ 
+    <div class="field">
+      <%= builder.label :enable, category.description %> 
+      <%= builder.check_box :enable %>
+    </div>
+ 
+   <% end %>
+  </div>
+  <!-- /Categories -->
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar"%>
   </div>
 <% end %>

@@ -8,12 +8,15 @@ gem 'rails', '3.2.13'
 #gem 'sqlite3'
 gem 'mysql2'
 gem 'bcrypt-ruby', :require=>'bcrypt'
+gem 'cancan'
+gem 'carrierwave'
+#gem 'rmagick', '~> 2.13.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  #gem 'coffee-rails', '~> 3.2.1' # más adelante...
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
