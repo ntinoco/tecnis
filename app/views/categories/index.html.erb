@@ -1,0 +1,35 @@
+<div id="home-content-wrapper-bar">
+
+<div id="separator"></div>
+<div id="home-content-header-thinest">
+<p class="intro-message"><strong>Listado de Categorías</strong></p>
+</div>
+
+<div id="home-content">
+
+<table class="battle-table" border="0" width="50%">
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.description %></td>
+    <td><%= link_to 'Modificar', edit_category_path(category) %></td>
+    <td><%= link_to 'Eliminar', category, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+</div>
+<hr> 
+<div id="product_links">
+<%if current_user && current_user.admin?%>
+Opciones: <%= link_to 'Nueva Categoría', new_category_path %> / <%=link_to 'Panel', :controller => 'authentication', :action => 'sign_in'%>
+<%end%>
+</div>
+<div id="product_links"><%= link_to '< Ir a la tienda', products_path %></div>
+</div>

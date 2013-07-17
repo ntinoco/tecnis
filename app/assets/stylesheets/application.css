@@ -862,6 +862,8 @@ table.cart-table td, table.cart-table th {
 	color: #fff;
 }
 
+
+#nav-bar a:link,
 #nav-bar a:visited { color:rgb(247, 237, 11); font-weight:bold; text-decoration:none; }
 #nav-bar a:hover,
 #nav-bar a:active { color:#fff; }

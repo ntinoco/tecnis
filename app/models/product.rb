@@ -9,7 +9,16 @@ class Product < ActiveRecord::Base
   validates_presence_of :product_categories, :presence => true
 
   scope :available, :conditions => {:available => true}
-  
+
+  def self.filter_by_params(b_admin, params)
+    if params[:category_id]
+      prods = b_admin ? Category.find(params[:category_id]).products : Category.find(params[:category_id]).products.available
+    else
+      prods = b_admin ? Product.all : Product.available
+    end
+    #prods.available unless b_admin
+  end
+
   #overwrites internal rails method for descriptive urls
   def to_param
     "#{id} #{name}".parameterize

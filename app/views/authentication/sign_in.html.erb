@@ -19,12 +19,14 @@
   </p>
 <% end %>
 </div>
-<div id="product_links"><%= link_to '< Ir a la tienda', products_path %></div>
 <div id="product_links">
   <%if current_user && current_user.admin?%>
   Opciones:
-  <%= link_to 'Crear nuevo usuario', 'new_user' %> / 
-  <%= link_to 'Ver listado de usuarios', users_path %>
+  <%= link_to 'Usuarios', users_path %> /
+  <%= link_to 'Productos', products_path %> /
+  <%= link_to 'Categorías', categories_path %> /
+  <%= link_to 'Cambiar mi password', account_settings_path %>
   <%end%>
 </div>
+<div id="product_links"><%= link_to '< Ir a la tienda', products_path %></div>
 </div>

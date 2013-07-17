@@ -16,7 +16,11 @@
         <p><%= @product.description %></p>
         <div id="product_price">Precio: <%= @product.price %> €</div>
       </div>
-      <div id="product_links"><%= link_to 'Comprar', add_to_cart_path(@product.id) %> - <%= link_to 'Volver atrás', products_path %></a></div>
+      <div id="product_links"><%= link_to 'Comprar', add_to_cart_path(@product.id) %> - <%= link_to 'Volver atrás', products_path %>
+       <%if current_user && current_user.admin?%>
+        - <%= link_to 'Editar', edit_product_path(@product) %>
+       <%end%>
+      </div>
     </div><!-- /home-nav -->
   
     <div id="home-sidebar">
@@ -32,7 +36,5 @@
             
    </div>
   </div><!-- /home-content -->
-
-<%= link_to 'Edit', edit_product_path(@product) %>
 
 </div><!-- /home-content-wrapper -->

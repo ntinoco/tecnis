@@ -7,7 +7,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.available
+    @products = Product.filter_by_params(current_user.admin?, params)
+    #@products = Product.available
 
     respond_to do |format|
       format.html # index.html.erb

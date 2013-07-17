@@ -1,6 +1,21 @@
-<h1>Editing user</h1>
+<div id="home-content-wrapper">
+
+<div id="home-content-header-thinest">
+<p class="intro-message"><strong>Modificar usuario</strong></p>
+</div>
+
+<div id="home-content">
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+</div>
+<div id="product_links">
+  <%if current_user && current_user.admin?%>
+  Opciones:
+  <%= link_to 'Listado de usuarios', users_path %> /
+  <%=link_to 'Panel', :controller => 'authentication', :action => 'sign_in'%>
+  <%end%>
+</div>
+<HR>
+<div id="product_links"><%= link_to '< Ir a la tienda', products_path %></div>
+</div>

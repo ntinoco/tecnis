@@ -55,4 +55,28 @@ class AuthenticationController < ApplicationController
     end
   end
 
+  def account_settings
+     @user = current_user
+  end
+
+  def set_account_info
+    old_user = current_user
+
+    # Does it match with current password?
+    @user = User.authenticate_by_username(old_user.username, params[:user][:password])
+
+    # verify
+    if @user.nil?
+      @user = current_user
+      @user.errors[:password] = "Contraseña errónea"
+      render :action => "account_settings"
+    else
+      # If there is a new_password value, then we need to update the password.
+      @user.password = @user.new_password unless @user.new_password.nil? || @user.new_password.empty?
+      @user.save!
+      flash[:notice] = 'Se modificó la contraseña'
+      render :action => 'sign_in'
+    end
+  end
+
 end

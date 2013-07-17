@@ -1,0 +1,37 @@
+<div id="home-content-wrapper">
+
+<div id="home-content-header-thinest">
+<p class="intro-message"><strong>Cambiar contraseña</strong></p>
+</div>
+
+<div id="home-content">
+<%= form_for @user, :as => :user, :url => account_settings_path, :method => :post do |f| %>
+  <p>
+    <%= f.label 'Contraseña actual:' %><br/>
+    <%= f.password_field :password %>
+    <%= show_field_error(@user, :password) %>
+  </p>
+  <p>
+    <%= f.label 'Nueva contraseña:' %><br/>
+    <%= f.password_field :new_password %>
+    <%= show_field_error(@user, :new_password) %>
+  </p>
+  <p>
+    <%= f.label 'Confirmar contraseña:' %><br/>
+    <%= f.password_field :new_password_confirmation %>
+  </p>
+  <p>
+    <%= f.submit 'Modificar' %>
+  </p>
+<% end %>
+</div>
+<div id="product_links">
+  <%if current_user && current_user.admin?%>
+  Opciones:
+  <%= link_to 'Usuarios', users_path %> /
+  <%= link_to 'Productos', products_path %> /
+  <%= link_to 'Categorías', categories_path %>
+  <%end%>
+</div>
+<div id="product_links"><%= link_to '< Ir a la tienda', products_path %></div>
+</div>

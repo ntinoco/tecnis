@@ -1,0 +1,20 @@
+<div id="home-content-wrapper">
+
+<div id="home-content-header-thinest">
+<p class="intro-message"><strong>Nueva categoría</strong></p>
+</div>
+
+<div id="home-content">
+<%= render 'form' %>
+</div>
+
+<div id="product_links">
+  <%if current_user && current_user.admin?%>
+  Opciones:
+  <%= link_to 'Listado de categorías', categories_path %> /
+  <%=link_to 'Panel', :controller => 'authentication', :action => 'sign_in'%>
+  <%end%>
+</div>
+<hr>
+<div id="product_links"><%= link_to '< Ir a la tienda', products_path %></div>
+</div>

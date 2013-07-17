@@ -23,7 +23,11 @@
         <div id="product_reference">ref: <%= product.reference %></div>
         <div id="product_description"><p><%= product.reduced_description %></p></div>
         <div id="product_price">Precio: <%= product.price %> €</div>
-        <div id="product_links"><%= link_to 'Comprar', add_to_cart_path(product.id) %> - <%= link_to 'Ver más', product %></a></div>
+        <div id="product_links"><%= link_to 'Comprar', add_to_cart_path(product.id) %> - <%= link_to 'Ver más', product %>
+        <%if current_user && current_user.admin?%>
+         - <%= link_to 'Editar', edit_product_path(product) %>
+        <%end%>
+        </a></div>
      </td>
     <% end %>
   </tr>
@@ -32,7 +36,11 @@
 
 <br />
 
-<%= link_to 'New Product', new_product_path %>
+<%if current_user && current_user.admin?%>
+<div id="product_links">
+<%= link_to 'Crear Nuevo Producto', new_product_path %>
+</div>
+<%end%>
 
 </div><!-- /home-nav -->
         <div id="home-sidebar">

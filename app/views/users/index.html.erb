@@ -26,9 +26,11 @@
 </table>
 
 </div>
-<hr>  
-<div id="product_links"><%= link_to '< Ir a la tienda', products_path %></div>
+<hr> 
 <div id="product_links">
-<%= link_to 'Crear nuevo usuario', new_user_path %> 
+<%if current_user && current_user.admin?%>
+Opciones: <%= link_to 'Crear nuevo usuario', new_user_path %> / <%=link_to 'Panel', :controller => 'authentication', :action => 'sign_in'%>
+<%end%>
 </div>
+<div id="product_links"><%= link_to '< Ir a la tienda', products_path %></div>
 </div>

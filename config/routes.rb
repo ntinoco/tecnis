@@ -14,7 +14,8 @@ Tecnisolar::Application.routes.draw do
   get "signed_out" => "authentication#signed_out"
   get "new_user" => "authentication#new_user"
   post "new_user" => "authentication#register"
-  #post "users/new" => "authentication#register"
+  get "account_settings" => "authentication#account_settings"
+  post "account_settings" => "authentication#set_account_info"
 
   get "change_password" => "authentication#change_password"
   get "forgot_password" => "authentication#forgot_password"

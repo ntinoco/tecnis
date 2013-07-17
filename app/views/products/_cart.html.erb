@@ -1,0 +1,14 @@
+<div id="cart">
+<table class="cart-table">
+<tr><td><h3>Producto</h3></td><td><h3>Uds.</h3></td><td></tr>
+<%amount = 0
+  session[:cart].items.each_key{|prod_id|
+   p = Product.find(prod_id)
+   u = session[:cart].items[prod_id]
+   amount += p.price * u.to_i
+   %>
+   <tr><td><%=p.name%></td><td><%=u%></td><td><strong><%= link_to '+', add_to_cart_path(prod_id) %> | <%= link_to '-', remove_from_cart_path(prod_id) %></strong></td></tr>
+<%}%>
+</table>
+<div id="total_price">Total: <%=amount%> €</div>
+</div>

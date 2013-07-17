@@ -68,9 +68,10 @@
 				<a class="block filamentgroup" href="http://www.top50solar.nl/solar_es/in.php?id=1101"><span>TopSolar</span></a>
 				<span class="first" style="float: right; padding-right: 12px;">
 					<%if session[:user_id].nil?%>
-					  <%=link_to 'Acceder', 'sign_in'%>
+					  <%=link_to 'Acceder', :controller => 'authentication', :action => 'sign_in'%>
 					<%else%>
-					  <%=link_to 'Salir', 'signed_out'%>
+					  <%=link_to 'Salir', :controller => 'authentication', :action => 'signed_out'%> - 
+					  <%=link_to 'Panel', :controller => 'authentication', :action => 'sign_in'%>
 					<%end%> - 
 					974 541 317 - 636 057 721 - info@tecnisolar.es
 				</span>

@@ -1,0 +1,31 @@
+<%
+@categories = Category.not_empty
+first_level = 5
+i = 0
+arr_more = [] 
+%>
+<div id="nav-bar">
+       <div class="left"></div>
+       <ul>
+          <%@categories.each{|c|
+             i+=1
+             if i <= first_level
+               %>
+                 <li><%= link_to c.description, products_path(:category_id => c.id) %></li>
+               <%
+             else
+               arr_more << c    
+             end
+          }%>
+       </ul>
+       <%if !arr_more.empty?%>
+       <div id="more-cats">
+        <li><a href="#">Más v</a></li>
+         <div id="nav-bar-more">
+           <%arr_more.each{|cm|%>
+             <li><a href="#"><%=cm.description%></a></li>
+           <%}%>
+         </div>
+       </div>
+       <%end%>
+</div>
