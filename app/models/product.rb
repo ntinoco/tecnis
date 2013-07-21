@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Product < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   attr_accessible :description, :name, :price, :reference, :image, :category, :product_categories_attributes, :enable, :available
@@ -26,6 +28,22 @@ class Product < ActiveRecord::Base
 
   def image_path
   	path = self.image.blank? ? "/public/images/no_product_image.jpg" : self.image.url 
+  end
+
+  def self.page_description(params)
+    if params[:category_id]
+       Category.find(params[:category_id]).description
+    else
+       "Productos disponibles"
+    end
+  end
+
+  def st_availability
+    if !available
+      "NO disponible"
+    else
+      "Sí"
+    end
   end
 
   def reduced_description

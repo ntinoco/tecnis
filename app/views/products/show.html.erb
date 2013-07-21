@@ -19,6 +19,7 @@
       <div id="product_links"><%= link_to 'Comprar', add_to_cart_path(@product.id) %> - <%= link_to 'Volver atrás', products_path %>
        <%if current_user && current_user.admin?%>
         - <%= link_to 'Editar', edit_product_path(@product) %>
+        - <%= link_to 'Lista de productos', :controller => 'products', :action => 'listing' %>
        <%end%>
       </div>
     </div><!-- /home-nav -->

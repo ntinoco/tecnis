@@ -6,8 +6,8 @@
 <div id="home-content">
 <div id="home-nav">
 
-<h1>Listing products</h1>
-
+<h1><%=@title%></h1>
+<div id="separator"></div>
 <table border="0" width="100%">
 <% @products.in_groups_of(2,false) do |row_product| %>
   <tr>

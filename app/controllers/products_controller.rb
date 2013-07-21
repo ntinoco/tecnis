@@ -7,8 +7,20 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.filter_by_params(current_user.admin?, params)
+    b_admin = current_user.admin? rescue false
+    @products = Product.filter_by_params(b_admin, params)
     #@products = Product.available
+    
+    @title = Product.page_description(params)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @products }
+    end
+  end
+
+  def listing
+    @products = Product.all
 
     respond_to do |format|
       format.html # index.html.erb

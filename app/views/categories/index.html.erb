@@ -9,7 +9,7 @@
 
 <table class="battle-table" border="0" width="50%">
   <tr>
-    <th>Description</th>
+    <th>Descripción</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,7 +17,7 @@
 
 <% @categories.each do |category| %>
   <tr>
-    <td><%= category.description %></td>
+    <td><%= category.description %> (<%= link_to category.st_products_uom, products_path(:category_id => category.id) %>)</td>
     <td><%= link_to 'Modificar', edit_category_path(category) %></td>
     <td><%= link_to 'Eliminar', category, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
   </tr>

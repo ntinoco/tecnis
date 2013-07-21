@@ -25,6 +25,7 @@ Tecnisolar::Application.routes.draw do
   match 'products/:id/add_to_cart' => 'products#add_to_cart', :as => :add_to_cart
   match 'products/:id/remove_from_cart' => 'products#remove_from_cart', :as => :remove_from_cart
   match 'products/clear_cart' => 'products#clear_cart', :as => :clear_cart
+  match 'products/listing' => 'products#listing', :as => :listing
 
   resources :products
   resources :users

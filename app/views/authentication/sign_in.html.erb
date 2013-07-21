@@ -23,7 +23,7 @@
   <%if current_user && current_user.admin?%>
   Opciones:
   <%= link_to 'Usuarios', users_path %> /
-  <%= link_to 'Productos', products_path %> /
+  <%= link_to 'Productos', :controller => 'products', :action => 'listing' %> /
   <%= link_to 'Categorías', categories_path %> /
   <%= link_to 'Cambiar mi password', account_settings_path %>
   <%end%>

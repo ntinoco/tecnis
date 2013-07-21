@@ -12,4 +12,10 @@ class Category < ActiveRecord::Base
   	c = Category.joins(:products).select('distinct categories.*').where('products.available=1')
   	c
   end
+
+  def st_products_uom #units of measure
+    count = self.products.count
+    uom = count == 1 ? "producto" : "productos"
+    "#{count} #{uom}"
+  end
 end

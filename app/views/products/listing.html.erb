@@ -1,0 +1,42 @@
+<div id="home-content-wrapper-bar">
+
+<div id="separator"></div>
+<div id="home-content-header-thinest">
+<p class="intro-message"><strong>Listado de Productos</strong></p>
+</div>
+
+<div id="home-content">
+
+<table class="battle-table" border="0" width="70%">
+  <tr>
+    <th>Nombre</th>
+    <th>Referencia</th>
+    <th>¿Disponible?</th>
+    <th>Precio (sin IVA)</th>
+    <th>Num. de categorías</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%=product.name%></td>
+    <td><%=product.reference%></td>
+    <td><%=product.st_availability%></td>
+    <td><%=product.price%> €</td>
+    <td><%=product.categories.count%></td>
+    <td><%= link_to 'Modificar', edit_product_path(product) %></td>
+    <td><%= link_to 'Eliminar', product, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+</div>
+<hr> 
+<div id="product_links">
+<%if current_user && current_user.admin?%>
+Opciones: <%= link_to 'Nuevo Producto', new_product_path %> / <%=link_to 'Panel', :controller => 'authentication', :action => 'sign_in'%>
+<%end%>
+</div>
+<div id="product_links"><%= link_to '< Ir a la tienda', products_path %></div>
+</div>
