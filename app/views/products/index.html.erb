@@ -19,7 +19,7 @@
      <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
      <td width="50%">
         <div id="product_name"><%= product.name %></div>
-        <div id="product_image"><%= image_tag(product.image_path, :size => "200x200")%></div>
+        <div id="product_image"><%= link_to image_tag(product.image_path, :size => "200x200"), product%></div>
         <div id="product_reference">ref: <%= product.reference %></div>
         <div id="product_description"><p><%= product.reduced_description %></p></div>
         <div id="product_price">Precio: <%= product.price %> €</div>
