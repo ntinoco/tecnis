@@ -43,4 +43,8 @@ class User < ActiveRecord::Base
     admin == true
   end
 
+  def role?(role_name)
+    roles.any?{|r| r.name == role_name}
+  end 
+
 end
