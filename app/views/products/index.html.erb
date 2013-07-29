@@ -23,7 +23,8 @@
         <div id="product_reference">ref: <%= product.reference %></div>
         <div id="product_description"><p><%= product.reduced_description %></p></div>
         <div id="product_price">Precio: <%= product.price %> €</div>
-        <div id="product_links"><%= link_to 'Comprar', add_to_cart_path(product.id) %> - <%= link_to 'Ver más', product %>
+        <!--<div id="product_links"><%= link_to 'Comprar', add_to_cart_path(product.id) %> - <%= link_to 'Ver más', product %>-->
+        <div id="product_links"><%= link_to 'Comprar', add_to_cart_path(product.id), :remote => true %> - <%= link_to 'Ver más', product %>
         <%if current_user && current_user.admin?%>
          - <%= link_to 'Editar', edit_product_path(product) %>
         <%end%>
@@ -48,10 +49,11 @@
                 <h2>Mi cesta</h2>
                 <p> Agregue productos pulsando el enlace de <strong>"Comprar"</strong> para añadirlos a su cesta de la compra.</p>
                 <p>Una vez tenga decido el total de su compra proceda a completarla usando <strong>"Finalizar"</strong></p>
-                <%if session[:cart]%>
-                 <%= render "cart" %>
-                 <div id="product_links"><%= link_to 'Vaciar carrito', clear_cart_path%> - <%= link_to 'Finalizar compra', clear_cart_path%></div>
-                <%end%>
+                <div id="asinc_cart">
+                 <%if session[:cart]%>
+                  <%= render "cart" %>
+                 <%end%>
+                </div>
             </div>
             
         </div><!-- home-sidebar -->

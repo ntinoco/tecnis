@@ -107,18 +107,28 @@ class ProductsController < ApplicationController
   def add_to_cart
     session[:cart] ||= Cart.new
     session[:cart] = session[:cart].add_product(params[:id])
-    redirect_to :products
+    respond_to do |format|
+       format.html {redirect_to :products}
+       format.js
+    end
   end
 
   def remove_from_cart
     session[:cart] = session[:cart].remove_product(params[:id])
-    redirect_to :products
+    respond_to do |format|
+      format.html {redirect_to :products}
+      format.js
+    end
   end
 
   def clear_cart
     session[:cart].reset
     session[:cart] = nil
-    redirect_to :products
+
+    respond_to do |format|
+      format.html {redirect_to :products}
+      format.js
+    end
   end
 
   private
