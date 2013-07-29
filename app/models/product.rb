@@ -12,16 +12,6 @@ class Product < ActiveRecord::Base
 
   scope :available, :conditions => {:available => true}
 
-  # Sphinx search index
-  ## Read this:
-  # http://freelancing-god.github.com/ts/en/upgrading.html
-  # for next upgrade
-  define_index do
-    indexes name, as: :name, sortable: true
-    indexes reference, as: reference
-    indexes description, as: description
-  end
-
   def self.filter_by_params(b_admin, params)
     if params[:category_id]
       prods = b_admin ? Category.find(params[:category_id]).products : Category.find(params[:category_id]).products.available

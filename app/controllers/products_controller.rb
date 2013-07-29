@@ -150,8 +150,9 @@ class ProductsController < ApplicationController
 
   # Sphinx search action
   def search
-    search_input = params[:search]
-    @result = Product.search_count search_input
+    raise "uninplemented"
+    #search_input = params[:search]
+    #@result = Product.search_count search_input
   end 
 
 end
