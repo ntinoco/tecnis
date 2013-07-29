@@ -24,15 +24,16 @@
       </div>
     </div><!-- /home-nav -->
   
-    <div id="home-sidebar">
+    <div id="home-sidebar-cart">
             <div class="home-sidebar-section">
                 <h2>Mi cesta</h2>
                 <p> Agregue productos pulsando el enlace de <strong>"Comprar"</strong> para añadirlos a su cesta de la compra.</p>
                 <p>Una vez tenga decido el total de su compra proceda a completarla usando <strong>"Finalizar"</strong></p>
-                <%if session[:cart]%>
-                 <%= render "cart" %>
-                 <div id="product_links"><%= link_to 'Vaciar carrito', clear_cart_path%> - <%= link_to 'Finalizar compra', clear_cart_path%></div>
-                <%end%>
+                <div id="asinc_cart">
+                 <%if session[:cart]%>
+                  <%= render "cart" %>
+                 <%end%>
+                </div>
             </div>
             
    </div>

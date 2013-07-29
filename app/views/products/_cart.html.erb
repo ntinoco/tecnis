@@ -7,9 +7,9 @@
    u = session[:cart].items[prod_id]
    amount += p.price * u.to_i
    %>
-   <tr><td><%=p.name%></td><td><%=u%></td><td><strong><%= link_to '+', add_to_cart_path(prod_id) %> | <%= link_to '-', remove_from_cart_path(prod_id) %></strong></td></tr>
+   <tr><td><%=p.name%></td><td><%=u%></td><td><strong><%= link_to '+', add_to_cart_path(prod_id), :remote => true %> | <%= link_to '-', remove_from_cart_path(prod_id), :remote => true %></strong></td></tr>
 <%}%>
 </table>
 <div id="total_price">Total: <%=amount%> €</div>
 </div>
-<div id="product_links"><%= link_to 'Vaciar carrito', clear_cart_path%> - <%= link_to 'Finalizar compra', clear_cart_path%></div>
+<div id="product_links"><%= link_to 'Vaciar carrito', clear_cart_path, :remote => true %> - <%= link_to 'Finalizar compra', clear_cart_path%></div>

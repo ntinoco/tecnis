@@ -598,6 +598,10 @@ div.about ul li p {
 .home-sidebar-section li a span { color:#444; }
 /* end mine*/
 
+/*sidebar with cart*/
+#home-sidebar-cart { float:right; width:200px; position: fixed; right: 280px; }
+/* /sidebar with cart*/
+
 #get-involved { width:400px; padding:0 0 30px; }
 #get-involved h3 { font-size:1.4em; color:#000; font-weight:normal; padding:0 0 5px; }
 #get-involved p { line-height:1.5; }

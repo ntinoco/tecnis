@@ -12,18 +12,12 @@
 <% @products.in_groups_of(2,false) do |row_product| %>
   <tr>
     <% for product in row_product %>
-     <!--<td>
-     <td><%= link_to 'Comprar', add_to_cart_path(product) %></td>
-     <td><%= link_to 'Show', product %></td>
-     <td><%= link_to 'Edit', edit_product_path(product) %></td>
-     <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
      <td width="50%">
         <div id="product_name"><%= product.name %></div>
         <div id="product_image"><%= link_to image_tag(product.image_path, :size => "200x200"), product%></div>
         <div id="product_reference">ref: <%= product.reference %></div>
         <div id="product_description"><p><%= product.reduced_description %></p></div>
         <div id="product_price">Precio: <%= product.price %> €</div>
-        <!--<div id="product_links"><%= link_to 'Comprar', add_to_cart_path(product.id) %> - <%= link_to 'Ver más', product %>-->
         <div id="product_links"><%= link_to 'Comprar', add_to_cart_path(product.id), :remote => true %> - <%= link_to 'Ver más', product %>
         <%if current_user && current_user.admin?%>
          - <%= link_to 'Editar', edit_product_path(product) %>
@@ -44,7 +38,7 @@
 <%end%>
 
 </div><!-- /home-nav -->
-        <div id="home-sidebar">
+        <div id="home-sidebar-cart">
             <div class="home-sidebar-section">
                 <h2>Mi cesta</h2>
                 <p> Agregue productos pulsando el enlace de <strong>"Comprar"</strong> para añadirlos a su cesta de la compra.</p>
