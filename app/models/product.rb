@@ -63,4 +63,8 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def self.IVA
+    21
+  end
+
 end
