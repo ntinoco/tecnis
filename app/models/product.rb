@@ -14,9 +14,9 @@ class Product < ActiveRecord::Base
 
   def self.filter_by_params(b_admin, params)
     if params[:category_id]
-      prods = b_admin ? Category.find(params[:category_id]).products : Category.find(params[:category_id]).products.available
+      prods = b_admin ? Category.find(params[:category_id]).products.page(params[:page]).per(8) : Category.find(params[:category_id]).products.available.page(params[:page]).per(8)
     else
-      prods = b_admin ? Product.all : Product.available
+      prods = b_admin ? Product.page(params[:page]).per(8) : Product.available.page(params[:page]).per(8)
     end
     #prods.available unless b_admin
   end

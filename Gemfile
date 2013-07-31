@@ -10,6 +10,7 @@ gem 'mysql2'
 gem 'bcrypt-ruby', :require=>'bcrypt'
 gem 'cancan'
 gem 'carrierwave'
+gem 'kaminari'
 #gem 'rmagick', '~> 2.13.1'
 
 # Gems used only for assets and not required

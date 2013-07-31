@@ -2,11 +2,11 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  hello: "Ola k ase"
   views:
     pagination:
-      previous: "&lt; Previous"
-      next: "Next &gt;"
+      previous: "&lt; Anterior"
+      next: "Siguiente &gt;"
       truncate: "..."
-      first: "First"
-      last: "Last"
+      first: "Inicio"
+      last: "Final"

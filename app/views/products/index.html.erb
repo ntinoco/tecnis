@@ -28,7 +28,8 @@
   </tr>
 <%end %>
 </table>
-
+<hr>
+<div id="product_price"><%= paginate @products %></div>
 <br />
 
 <%if current_user && current_user.admin?%>
