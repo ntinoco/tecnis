@@ -23,7 +23,7 @@ arr_more = []
         <li><a href="#">Más v</a></li>
          <div id="nav-bar-more">
            <%arr_more.each{|cm|%>
-             <li><a href="#"><%=cm.description%></a></li>
+             <li><%= link_to cm.description, products_path(:category_id => cm.id) %></li>
            <%}%>
          </div>
        </div>
