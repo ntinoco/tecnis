@@ -22,6 +22,12 @@ Tecnisolar::Application.routes.draw do
   
   get "password_sent" => "authentication#password_sent"
 
+  get "forgot_password" => "authentication#forgot_password"
+  put "forgot_password" => "authentication#send_password_reset_instructions"
+
+  get "password_reset" => "authentication#password_reset"
+  put "password_reset" => "authentication#new_password"
+
   match 'products/:id/add_to_cart' => 'products#add_to_cart', :as => :add_to_cart
   match 'products/:id/remove_from_cart' => 'products#remove_from_cart', :as => :remove_from_cart
   match 'products/clear_cart' => 'products#clear_cart', :as => :clear_cart

@@ -15,7 +15,10 @@
     <%= f.password_field :password %>
   </p>
   <p>
-    <%= f.submit 'Entrar' %>&nbsp;&nbsp;&nbsp;
+    <%= f.submit 'Entrar' %>&nbsp;&nbsp; 
+    <%if current_user.nil?%>
+    <%= link_to 'Olvidé mi contraseña', :forgot_password %>
+    <%end%>
   </p>
 <% end %>
 </div>

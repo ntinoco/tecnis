@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703194541) do
+ActiveRecord::Schema.define(:version => 20130806170958) do
 
   create_table "categories", :force => true do |t|
     t.string   "description"
@@ -56,9 +56,11 @@ ActiveRecord::Schema.define(:version => 20130703194541) do
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.boolean  "admin"
+    t.string   "password_reset_token"
+    t.datetime "password_expires_after"
   end
 
 end

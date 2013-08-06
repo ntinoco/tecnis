@@ -86,4 +86,94 @@ class AuthenticationController < ApplicationController
     end
   end
 
+  # get
+  def forgot_password
+    @user = User.new
+  end
+
+  # put
+  def send_password_reset_instructions
+    username_or_email = params[:user][:username]
+
+    if username_or_email.rindex('@')
+      user = User.find_by_email(username_or_email)
+    else
+      user = User.find_by_username(username_or_email)
+    end
+
+    if user
+      user.password_reset_token = SecureRandom.urlsafe_base64
+      user.password_expires_after = 10.hours.from_now
+      user.save
+      UserMailer.reset_password_email(user).deliver
+      flash[:notice] = 'Se han enviado por email las instrucciones para recuperar la contraseña.'
+      redirect_to :sign_in
+    else
+      @user = User.new
+      # put the previous value back.
+      @user.username = params[:user][:username]
+      @user.errors[:username] = 'no es un usuario registrado.'
+      render :action => "forgot_password"
+    end
+  end
+
+  # HTTP get
+  def password_reset
+    token = params.first[0]
+    @user = User.find_by_password_reset_token(token)
+
+    if @user.nil?
+      flash[:error] = 'No ha sido solicitado el cambio de contraseña de este usuario.'
+      redirect_to :root
+      return
+    end
+
+    if @user.password_expires_after < DateTime.now
+      clear_password_reset(@user)
+      @user.save
+      flash[:error] = 'La solicitud de camnio de contraseña ha caducado. Por favor, solicítalo de nuevo.'
+      redirect_to :forgot_password
+    end
+  end
+
+  # HTTP put
+  def new_password
+    username = params[:user][:username]
+    @user = User.find_by_username(username)
+
+    if verify_new_password(params[:user])
+      @user.update_attributes(params[:user])
+      @user.password = @user.new_password
+
+      if @user.valid?
+        clear_password_reset(@user)
+        @user.save
+        flash[:notice] = 'Se ha modificado la contraseña. Acceda con la nueva contraseña.'
+        redirect_to :sign_in
+      else
+        render :action => "password_reset"
+      end
+    else
+      @user.errors[:new_password] = 'La contraseña no puede estar en blanco y debe coincidir en ambos campos.'
+      render :action => "password_reset"
+    end
+  end
+
+  private
+
+   def clear_password_reset(user)
+     user.password_expires_after = nil
+     user.password_reset_token = nil
+   end
+
+   def verify_new_password(passwords)
+     result = true
+
+     if passwords[:new_password].blank? || (passwords[:new_password] != passwords[:new_password_confirmation])
+       result = false
+     end
+
+     result
+   end
+
 end
