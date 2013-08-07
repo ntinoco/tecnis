@@ -31,7 +31,10 @@ Tecnisolar::Application.routes.draw do
   match 'products/:id/add_to_cart' => 'products#add_to_cart', :as => :add_to_cart
   match 'products/:id/remove_from_cart' => 'products#remove_from_cart', :as => :remove_from_cart
   match 'products/clear_cart' => 'products#clear_cart', :as => :clear_cart
+  match 'products/purchase' => 'products#purchase', :as => :purchase
+  match 'products/end_purchase' => 'products#end_purchase', :as => :end_purchase
   match 'products/listing' => 'products#listing', :as => :listing
+  match 'products/thank_you' => 'products#thank_you', :as => :thank_you
 
   resources :products
   resources :users

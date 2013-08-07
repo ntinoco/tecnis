@@ -1,0 +1,29 @@
+Se ha registrado un pedido nuevo en Tecnisolar
+=======================================================
+Datos del solicitante:
+
+<%@params.each{|k,v|
+  next if ["utf8","authenticity_token","commit","controller","action"].include?(k)%>
+  <%=k%>: <%=v%><br>
+<%}%>
+
+=======================================================
+Detalle:
+	Producto / Unidades / Precio unitario / Total por producto
+      <%
+      total_amount   = 0
+      product_amount = 0
+      @cart.items.each_key{|prod_id|
+      p = Product.find(prod_id)
+      u = @cart.items[prod_id]
+      product_amount = p.price * u.to_i
+      total_amount += product_amount
+      %>
+      <%=p.name%> / <%=u.to_s%> / <%=p.price%>€ / <%=product_amount%>€
+    <%}%>
+
+========================================================
+Total del pedido:
+Base: <%=total_amount%>€
+IVA: <%=Product.IVA_amount(total_amount)%>€</p>
+Total: <%=Product.amount_with_tax(total_amount)%>€

@@ -16,4 +16,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, :subject => "Tecnisolar: Regenerar contraseña")
   end
   
+  def order_confirmation(cart, params)
+    @cart   = cart
+    @params = params
+    mail(:to => "nacho.tinoco@gmail.com", :subject => "Tecnisolar: Nuevo Pedido")
+  end
 end

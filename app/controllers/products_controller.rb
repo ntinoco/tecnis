@@ -131,6 +131,20 @@ class ProductsController < ApplicationController
     end
   end
 
+  def purchase
+  end
+
+  def end_purchase
+      UserMailer.order_confirmation(session[:cart], params).deliver
+      flash[:notice] = 'Pedido completado correctamente.'
+      redirect_to :thank_you
+  end
+
+  def thank_you
+     session[:cart].reset
+     session[:cart] = nil
+  end
+
   private
   def build_product
     @product = Product.new

@@ -1,0 +1,81 @@
+<div id="home-content-wrapper">
+
+<div id="home-content-header-thinest">
+    <p class="intro-message"><strong>Detalle de su pedido:</strong></p>
+</div><!-- /home-content-header -->
+
+  <div id="home-content">
+    <div id="home-nav">
+      <%if session[:cart].nil?%>
+      <div class="home-nav-section-wideend last">
+        <h1>No hay productos en su cesta</h1>
+        <p>No hay productos almacenados en su cesta de la compra. Asegúrese de revisar su cesta (en la parte izquierda de 
+          la sección de <%= link_to 'productos', products_path %>) y confirmar que aparecen ahí sus productos seleccionados.</p>
+        <p>Revise tambíen que su navegador tenga habilitadas las cookies pues son necesarias momentáneamente para completar su pedido.</p>
+      </div>
+      <%else%>
+        <%= form_tag :action => 'end_purchase' do%>
+         <table class="order_sheet" border="1" width="80%">
+          <tr><th>Producto</th><th align="center">Unidades</th><th align="center">Precio unitario</th><th align="right">Total por producto</th></tr>
+          <%
+          total_amount   = 0
+          product_amount = 0
+          session[:cart].items.each_key{|prod_id| 
+            p = Product.find(prod_id)
+            u = session[:cart].items[prod_id]
+            product_amount = p.price * u.to_i
+            total_amount += product_amount
+            %>
+            <tr><td><%=p.name%></td><td align="center"><%=u.to_s%></td><td align="center"><%=p.price%>€</td><td align="right"><%=product_amount%>€</td></tr>
+          <%}%>
+          <tr><td colspan="2" style="border-width: 0px;"></td><td align="right"><strong>Base:</strong></td><td align="right"><strong><%=total_amount%>€</strong></td></tr>
+          <tr><td colspan="2" style="border-width: 0px;"></td><td align="right"><strong>IVA (<%=Product.IVA%>%):</strong></td><td align="right"><strong><%= '%.2f' % Product.IVA_amount(total_amount)%>€</strong></td></tr>
+          <tr><td colspan="2" style="border-width: 0px;"></td><td align="right"><strong>Total:</strong></td><td align="right"><div id="product_price"><%= '%.2f' % Product.amount_with_tax(total_amount)%>€</div></td></tr>
+        </table>
+    
+        <div id="separator"></div>
+
+        <div id="order_form">
+          <h1>Datos personales</h1>
+          <p>Rellene todos los campos del siguiente formulario:</p>
+          <label>Nombre y apellidos:</label>
+          <%=text_field_tag 'nombre'%>
+
+          <label>Dirección de envío:</label>
+          <%=text_field_tag 'direccion'%>
+
+          <label>Email de contacto:</label>
+          <%=text_field_tag 'email'%>
+
+          <label>Teléfono de contacto:</label>
+          <%=text_field_tag 'telefono'%>
+
+          <label>NIF:</label>
+          <%=text_field_tag 'nif'%>
+
+          <%=submit_tag "Confirmar pedido"%>
+        </div>
+      <%end%>
+    <%end%>
+    <div id="separator"></div>
+
+    <div id="product_links">
+        <%= link_to 'Continuar añadiendo productos', products_path %>
+    </div>
+    </div><!-- /home-nav -->
+  
+    <div id="home-sidebar">
+            <div class="home-sidebar-section">
+                <h2>Finalizar la compra</h2>
+                <p>Puede <%= link_to 'continuar añadiendo productos', products_path %> y volver más tarde a esta página. </p>
+                <p>Recuerde que en su <%= link_to 'Cesta', products_path %> puede sumar o restar unidades de un producto en su pedido (Usando los signos + y -).</p>
+                <p>Una vez tenga decidido el total de su pedido, complételo pulsando el botón <strong>"Confirmar pedido"</strong></p>
+                <p>Recuerde rellenar todos sus datos personales para poder ponernos en contacto con usted.</p>
+                <p>Una vez completado el pedido, le remitiremos las instrucciones necesarias para efectuar el pago mediante <strong>transferencia bancaria</strong>.</p>
+            </div>
+            
+     </div>
+
+  </div><!-- /home-content -->
+
+</div><!-- /home-content-wrapper -->

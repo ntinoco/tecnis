@@ -798,6 +798,84 @@ table.cart-table td, table.cart-table th {
 	font: normal 16px/17px "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
 }
 
+/* Hoja de pedido */
+table.order_sheet {
+	box-shadow: 10px 10px 5px #888888;
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 2px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.order_sheet th {
+	border-width: 2px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.order_sheet td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+
+#order_form {
+	box-shadow: 10px 10px 5px #888888;
+	width: 80%;
+	border: 2px solid;
+	font: normal 14px/15px "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	height: 380px;
+	padding:14px;
+}
+
+#order_form h1 {
+    font-size:15px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+#order_form p {
+	font-size:11px;
+    color:#666666;
+    margin-bottom:20px;
+    border-bottom:solid 1px #b7ddf2;
+    padding-bottom:10px;
+}
+
+#order_form label {
+    display:block;
+    font-weight:bold;
+    text-align:left;
+    width:240px;
+    float:left;
+}
+
+#order_form input{
+    float:left;
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px #aacfe4;
+    width:200px;
+    margin:2px 0 20px 10px;
+}
+
+#order_form button{
+    clear:both;
+    margin-left:150px;
+    width:95px;
+    height:31px;
+    text-align:center;
+    line-height:31px;
+    color:#FFFFFF;
+    font-size:11px;
+    font-weight:bold;
+}
+/* /Hoja de pedido */
+
 /* nav bar*/
 /*   -------------------------------- */
 

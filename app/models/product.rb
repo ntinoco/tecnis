@@ -67,4 +67,11 @@ class Product < ActiveRecord::Base
     21
   end
 
+  def self.IVA_amount(amount)
+    amount * (Product.IVA / 100.00) rescue 0
+  end
+
+  def self.amount_with_tax(amount)
+    amount * (1 + (Product.IVA / 100.00))
+  end
 end
