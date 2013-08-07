@@ -1,0 +1,9 @@
+Solicitud de información desde Tecnisolar.es
+=====================================================
+
+Datos del formulario:
+<%@params.each{|k,v|
+  next if ["utf8","authenticity_token","commit","controller","action"].include?(k)%>
+  <%=k%>: <%=v%>
+<%}%>
+

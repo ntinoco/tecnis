@@ -19,6 +19,11 @@ class UserMailer < ActionMailer::Base
   def order_confirmation(cart, params)
     @cart   = cart
     @params = params
-    mail(:to => "nacho.tinoco@gmail.com", :subject => "Tecnisolar: Nuevo Pedido")
+    mail(:to => ENV['ORDER_INBOX'], :subject => "Tecnisolar: Nuevo Pedido")
+  end
+
+  def request_info(params)
+    @params = params
+    mail(:to => ENV['ORDER_INBOX'], :subject => "Tecnisolar: Formulario de contacto")
   end
 end

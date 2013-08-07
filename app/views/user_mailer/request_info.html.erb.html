@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+<h2>Solicitud de información desde Tecnisolar.es</h2>
+<p>Datos del formulario:</p>
+<%@params.each{|k,v|
+  next if ["utf8","authenticity_token","commit","controller","action"].include?(k)%>
+  <%=k%>: <%=v%> <br>
+<%}%>
+<br>
+</body>
+</html>

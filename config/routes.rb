@@ -36,6 +36,20 @@ Tecnisolar::Application.routes.draw do
   match 'products/listing' => 'products#listing', :as => :listing
   match 'products/thank_you' => 'products#thank_you', :as => :thank_you
 
+  # Static pages (home)
+  match 'ofrecemos' => 'home#ofrecemos', :as => :ofrecemos
+  match 'contacto' => 'home#contacto', :as => :contacto
+  match 'agua_caliente_sanitaria' => 'home#agua_caliente_sanitaria', :as => :agua_caliente_sanitaria
+  match 'calefaccion' => 'home#calefaccion', :as => :calefaccion
+  match 'instalaciones_hoteleras_campings' => 'home#instalaciones_hoteleras_campings', :as => :instalaciones_hoteleras_campings
+  match 'climatizacion_piscinas' => 'home#climatizacion_piscinas', :as => :climatizacion_piscinas
+  match 'instalaciones_agricolas' => 'home#instalaciones_agricolas', :as => :instalaciones_agricolas
+  match 'calderas_biomasa' => 'home#calderas_biomasa', :as => :calderas_biomasa
+  match 'form' => 'home#form', :as => :form
+
+  match 'submit_mail' => 'home#submit_mail', :as => :submit_mail
+  match 'gracias' => 'home#gracias', :as => :gracias
+
   resources :products
   resources :users
 
